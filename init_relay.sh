@@ -1,4 +1,4 @@
-echo "Starting init_para.sh"
+echo "Starting init_relay.sh"
 echo "This script will install the necessary dependencies to run a Polkadot Parachain node."
 
 apt update
@@ -17,15 +17,15 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 echo "Rust configured."
 
 echo "Cloning Polkadot..."
-git clone --depth 1 --branch polkadot-v0.9.37 https://github.com/substrate-developer-hub/substrate-parachain-template.git
+git clone --branch release-v0.9.37 https://github.com/paritytech/polkadot.git
 
-cd substrate-parachain-template
+cd polkadot
 
 echo "Building Polkadot... this might take 25 minutes or more."
 cargo build --release
 echo "Polkadot built."
 
-echo "Configuring firewall for polkadot..."
+echo "Configuring firewall..."
 ufw allow 30333/tcp
 ufw allow 9933/tcp
 ufw allow 9944/tcp
